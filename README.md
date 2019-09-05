@@ -7,4 +7,4 @@ Repositório dedicado à disciplina: Trabalho Interdisciplinar de Software III, 
 
 * **Matheus Carneiro** - [mcarneirobug](https://github.com/mcarneirobug)
 * **Raíssa Vilela** - [raissavilela](https://github.com/raissavilela)
-* **Michel Oliveira** 
+* **Michel Oliveira** - [michelOlivc](https://github.com/michelOlivc)
