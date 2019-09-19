@@ -37,7 +37,7 @@ public class Cliente {
 		this.nome = nome;
 		this.telefone = telefone;
 		this.rg = rg;
-		this.cpf = rg;
+		this.cpf = cpf;
 		this.rua = rua;
 		this.numero = numero;
 		this.complemento = complemento;

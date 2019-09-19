@@ -18,7 +18,12 @@ public class ClienteService {
 		return ClienteDAO.getInstance().buscarPorId(id);
 	}
 	
-	public void salvarCliente(Cliente cliente) throws SQLException {
+	public void salvarCliente(Cliente cliente) throws Exception {
+		if(cliente.getNome() == null || cliente.getNome().equals("")
+				|| cliente.getCpf() == null || cliente.getCpf().equals("")) {
+			throw new Exception("Dados inválidos");
+		}
+		
 		ClienteDAO.getInstance().adicionar(cliente);
 	}
 	
