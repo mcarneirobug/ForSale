@@ -1,0 +1,19 @@
+CREATE TABLE `teste`.`cliente` (
+  `cliente_id` BIGINT NOT NULL,
+  `nome` VARCHAR(200) NOT NULL,
+  `telefone` VARCHAR(11) NULL,
+  `rg` VARCHAR(15) NULL,
+  `cpf` VARCHAR(11) NULL,
+  `rua` VARCHAR(200) NULL,
+  `numero` INT NULL,
+  `complemento` VARCHAR(100) NULL,
+  `cep` VARCHAR(9) NULL,
+  `bairro` VARCHAR(100) NULL,
+  `cidade` VARCHAR(80) NULL,
+  `uf` VARCHAR(2) NULL,
+  PRIMARY KEY (`cliente_id`));
+
+ALTER TABLE `teste`.`cliente` 
+CHANGE COLUMN `cpf` `cpf` VARCHAR(11) NOT NULL ,
+ADD UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC);
+;

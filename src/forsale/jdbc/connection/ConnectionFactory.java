@@ -4,13 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import com.mysql.jdbc.Driver;
-
+import com.mysql.cj.jdbc.Driver;
 
 public class ConnectionFactory {	
-	public static String URL = "jdbc:mysql://localhost:3307/teste";
+	public static String URL = "jdbc:mysql://localhost:3307/teste?useTimezone=true&serverTimezone=UTC";
 	public static String USER = "root";
-	public static String PASSWORD = "1234";
+	public static String PASSWORD = "12345";
 	
 	public static Connection getConnection()
     {
@@ -18,7 +17,8 @@ public class ConnectionFactory {
           DriverManager.registerDriver(new Driver());
           return DriverManager.getConnection(URL, USER, PASSWORD);
       } catch (SQLException e) {
-          throw new RuntimeException("Erro ao conectar com o banco de dados", e);
+          e.printStackTrace();
+    	  throw new RuntimeException("Erro ao conectar com o banco de dados", e);
       }
     }
 	
