@@ -1,8 +1,9 @@
 package forsale.service;
 
-import java.sql.SQLException;
+import java.util.List;
 
 import forsale.dao.ClienteDAO;
+import forsale.filter.ClienteFiltro;
 import forsale.model.Cliente;
 
 public class ClienteService {
@@ -14,17 +15,27 @@ public class ClienteService {
 		return instance;
 	}
 	
-	public Cliente carregarCliente(Long id) {
+	public Cliente buscarPorId(Long id) {
 		return ClienteDAO.getInstance().buscarPorId(id);
 	}
 	
-	public void salvarCliente(Cliente cliente) throws Exception {
-		if(cliente.getNome() == null || cliente.getNome().equals("")
-				|| cliente.getCpf() == null || cliente.getCpf().equals("")) {
-			throw new Exception("Dados inválidos");
-		}
-		
+	public void adicionar(Cliente cliente) throws Exception {
 		ClienteDAO.getInstance().adicionar(cliente);
 	}
 	
+	public List<Cliente> buscarTodos() {
+		return ClienteDAO.getInstance().buscarTodos();
+	}
+	
+	public void atualizar(Cliente cliente) {
+		ClienteDAO.getInstance().atualizar(cliente);
+	}
+	
+	public List<Cliente> buscarTodosPorFiltro(ClienteFiltro filtro) {
+		return ClienteDAO.getInstance().buscarTodosPorFiltro(filtro);
+	}
+	
+	public void excluir(Cliente cliente) {
+		ClienteDAO.getInstance().excluir(cliente);
+	}
 }

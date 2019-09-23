@@ -8,8 +8,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import forsale.filter.ClienteFiltro;
 import forsale.jdbc.connection.ConnectionFactory;
 import forsale.model.Cliente;
+import forsale.utils.Utils;
 
 public class ClienteDAO implements GenericDAO<Cliente> {
 	private static final ClienteDAO instance = new ClienteDAO();
@@ -78,7 +80,47 @@ public class ClienteDAO implements GenericDAO<Cliente> {
 	        return null;
 	    }
 	}
-
+	
+	public List<Cliente> buscarTodosPorFiltro(ClienteFiltro filtro) {
+		Connection connection = ConnectionFactory.getConnection();
+	    try {
+	    	String sql = montaQuerySQLConsultaComFiltro(filtro);
+	    	
+	    	Statement stmt = connection.createStatement();
+	        ResultSet rs = stmt.executeQuery(sql);
+	        
+	        List<Cliente> listaClientes = new ArrayList<Cliente>();
+	        while(rs.next()) {
+	            Cliente cliente = extrairClienteDoResultSet(rs);
+	            listaClientes.add(cliente);
+	        }
+	        
+	        return listaClientes;
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+	}
+	
+	public String montaQuerySQLConsultaComFiltro(ClienteFiltro filtro) {
+		Boolean parametroAnteriorNulo = false;
+    	StringBuilder sql = new StringBuilder("SELECT * FROM cliente");
+        
+        if(Utils.isNotBlank(filtro.getNome())) {
+        	sql.append(" WHERE nome LIKE '"+ filtro.getNome() +"%'");
+        } else {
+        	parametroAnteriorNulo = true;
+        }
+        
+        if(Utils.isNotBlank(filtro.getCpf())) {
+        	sql.append(
+        			(parametroAnteriorNulo == false ? " AND" : "") + 
+        			" WHERE cpf LIKE '"+ filtro.getCpf() +"'");
+        }
+        
+        return sql.toString();
+	}
+	
 	@Override
 	public void adicionar(Cliente cliente) throws SQLException {
 		Connection connection = ConnectionFactory.getConnection();

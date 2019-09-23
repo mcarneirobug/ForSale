@@ -5,7 +5,7 @@ CREATE TABLE `teste`.`cliente` (
   `rg` VARCHAR(15) NULL,
   `cpf` VARCHAR(11) NULL,
   `rua` VARCHAR(200) NULL,
-  `numero` INT NULL,
+  `numero` varchar(6) NULL,
   `complemento` VARCHAR(100) NULL,
   `cep` VARCHAR(9) NULL,
   `bairro` VARCHAR(100) NULL,
