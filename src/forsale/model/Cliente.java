@@ -47,6 +47,33 @@ public class Cliente {
 		this.uf = uf;
 	}
 	
+	public Cliente(Long cliente_id,
+			String nome, 
+			String telefone,
+			String rg, 
+			String cpf, 
+			String rua, 
+			Integer numero,
+			String complemento, 
+			String cep, 
+			String bairro,
+			String cidade, 
+			String uf) {
+		
+		this.cliente_id = cliente_id;
+		this.nome = nome;
+		this.telefone = telefone;
+		this.rg = rg;
+		this.cpf = cpf;
+		this.rua = rua;
+		this.numero = numero;
+		this.complemento = complemento;
+		this.cep = cep;
+		this.bairro = bairro;
+		this.cidade = cidade;
+		this.uf = uf;
+	}
+	
 	public Long getCliente_id() {
 		return cliente_id;
 	}

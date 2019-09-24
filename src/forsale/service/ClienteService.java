@@ -1,5 +1,6 @@
 package forsale.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import forsale.dao.ClienteDAO;
@@ -27,7 +28,7 @@ public class ClienteService {
 		return ClienteDAO.getInstance().buscarTodos();
 	}
 	
-	public void atualizar(Cliente cliente) {
+	public void atualizar(Cliente cliente) throws SQLException {
 		ClienteDAO.getInstance().atualizar(cliente);
 	}
 	

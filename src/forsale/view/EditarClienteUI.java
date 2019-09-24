@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package forsale.view;
 
 import java.sql.SQLException;
@@ -13,17 +8,39 @@ import javax.swing.JOptionPane;
 import forsale.model.Cliente;
 import forsale.service.ClienteService;
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 /**
  *
  * @author Michel
  */
-public class DadosClienteUI extends javax.swing.JInternalFrame {
-
+public class EditarClienteUI extends javax.swing.JInternalFrame {
     /**
-     * Creates new form DadosClienteIFUI
+     * Creates new form EditarClienteUI
      */
-    public DadosClienteUI() {
+    public EditarClienteUI() {
         initComponents();
+    }
+    
+    public EditarClienteUI(Cliente cliente) {
+    	initComponents();
+    	
+    	inputId.setText(cliente.getCliente_id().toString());
+    	inputNome.setText(cliente.getNome());
+    	inputTelefone.setText(cliente.getTelefone());
+		inputRg.setText(cliente.getRg());
+		inputCPF.setText(cliente.getCpf());
+		inputRua.setText(cliente.getRua()); 
+		inputNumero.setText(cliente.getNumero().toString());
+		inputComplemento.setText(cliente.getComplemento()); 
+		inputCEP.setText(cliente.getCep()); 
+		inputBairro.setText(cliente.getBairro());
+		inputCidade.setText(cliente.getCidade()); 
+		inputUF.setText(cliente.getUf());
     }
     
     /**
@@ -43,7 +60,9 @@ public class DadosClienteUI extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         inputCPF = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        inputRG = new javax.swing.JTextField();
+        inputRg = new javax.swing.JTextField();
+        inputId = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         inputRua = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -60,11 +79,9 @@ public class DadosClienteUI extends javax.swing.JInternalFrame {
         inputCidade = new javax.swing.JTextField();
         inputBairro = new javax.swing.JTextField();
         limparButton = new javax.swing.JButton();
-        buttonSalvar = new javax.swing.JButton();
+        salvarButton = new javax.swing.JButton();
 
         setClosable(true);
-        setTitle("Cadastro de Clientes");
-        setAlignmentX(50.0F);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
@@ -80,12 +97,25 @@ public class DadosClienteUI extends javax.swing.JInternalFrame {
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel15.setText("Telefone:");
 
+        inputId.setEditable(false);
+        inputId.setBackground(new java.awt.Color(255, 255, 255, 0));
+        inputId.setBorder(null);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel4.setText("Id:");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(inputId, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,17 +128,21 @@ public class DadosClienteUI extends javax.swing.JInternalFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
-                            .addComponent(inputRG, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(inputRg, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(22, 22, 22)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(inputCPF)
+                            .addComponent(inputCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(inputId, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel15))
@@ -123,11 +157,11 @@ public class DadosClienteUI extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inputCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inputRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(inputRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39))
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "EndereÃ§o", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Rua:");
@@ -139,7 +173,7 @@ public class DadosClienteUI extends javax.swing.JInternalFrame {
         jLabel3.setText("Cidade:");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel5.setText("NÂ°:");
+        jLabel5.setText("N°:");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel6.setText("CEP:");
@@ -236,11 +270,11 @@ public class DadosClienteUI extends javax.swing.JInternalFrame {
             }
         });
 
-        buttonSalvar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        buttonSalvar.setText("Salvar");
-        buttonSalvar.addActionListener(new java.awt.event.ActionListener() {
+        salvarButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        salvarButton.setText("Salvar");
+        salvarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonSalvarActionPerformed(evt);
+                salvarButtonActionPerformed(evt);
             }
         });
 
@@ -252,7 +286,7 @@ public class DadosClienteUI extends javax.swing.JInternalFrame {
                 .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(buttonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(salvarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(limparButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -263,28 +297,43 @@ public class DadosClienteUI extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(limparButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(salvarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
-    	try {
+    
+	private void limparButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		inputNome.setText(""); 
+		inputTelefone.setText("");
+		inputRg.setText(""); 
+		inputCPF.setText(""); 
+		inputRua.setText(""); 
+		inputNumero.setText("");
+		inputComplemento.setText("");
+		inputCEP.setText(""); 
+		inputBairro.setText("");
+		inputCidade.setText(""); 
+		inputUF.setText("");
+	}
+	
+	private void salvarButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		try {
     		String nome = !inputNome.getText().equals("") ? inputNome.getText() : null;
     		String cpf = !inputCPF.getText().equals("") ? inputCPF.getText() : null;
     		
-    		Cliente cliente = new Cliente(nome, 
+    		Cliente cliente = new Cliente(Long.parseLong(inputId.getText()),
+    			nome, 
     			inputTelefone.getText(),
-    			inputRG.getText(), 
+    			inputRg.getText(), 
     			cpf, 
     			inputRua.getText(), 
     			Integer.parseInt(inputNumero.getText()),
@@ -294,42 +343,24 @@ public class DadosClienteUI extends javax.swing.JInternalFrame {
     			inputCidade.getText(), 
     			inputUF.getText());
     			
-    		ClienteService.getInstance().adicionar(cliente);
+    		ClienteService.getInstance().atualizar(cliente);
     		JOptionPane.showMessageDialog(new JFrame(), "Cliente adicionado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-    	} catch (SQLException e) {
-    		e.printStackTrace();
-    		JOptionPane.showMessageDialog(new JFrame(), "Dados inválidos", "Erro", JOptionPane.ERROR_MESSAGE);
     	} catch (Exception e) {
     		e.printStackTrace();
     		JOptionPane.showMessageDialog(new JFrame(), "Um erro ocorreu. Contate o administrador do sistema", "Erro", JOptionPane.ERROR_MESSAGE);
     	}
-    }//GEN-LAST:event_buttonSalvarActionPerformed
-
-    private void limparButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparButtonActionPerformed
-    	inputNome.setText(""); 
-		inputTelefone.setText("");
-		inputRG.setText(""); 
-		inputCPF.setText(""); 
-		inputRua.setText(""); 
-		inputNumero.setText("");
-		inputComplemento.setText("");
-		inputCEP.setText(""); 
-		inputBairro.setText("");
-		inputCidade.setText(""); 
-		inputUF.setText("");
-    }//GEN-LAST:event_limparButtonActionPerformed
-
-
+	}
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonSalvar;
     private javax.swing.JTextField inputBairro;
     private javax.swing.JTextField inputCEP;
     private javax.swing.JTextField inputCPF;
-    private javax.swing.JTextField inputRG;
     private javax.swing.JTextField inputCidade;
     private javax.swing.JTextField inputComplemento;
+    private javax.swing.JTextField inputId;
     private javax.swing.JTextField inputNome;
     private javax.swing.JTextField inputNumero;
+    private javax.swing.JTextField inputRg;
     private javax.swing.JTextField inputRua;
     private javax.swing.JTextField inputTelefone;
     private javax.swing.JTextField inputUF;
@@ -339,6 +370,7 @@ public class DadosClienteUI extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -347,5 +379,6 @@ public class DadosClienteUI extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JButton limparButton;
+    private javax.swing.JButton salvarButton;
     // End of variables declaration//GEN-END:variables
 }

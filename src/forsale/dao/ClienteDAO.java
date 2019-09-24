@@ -143,32 +143,32 @@ public class ClienteDAO implements GenericDAO<Cliente> {
 	}
 
 	@Override
-	public void atualizar(Cliente cliente) {
-		Connection connection = ConnectionFactory.getConnection();
-	    try {
-	        PreparedStatement ps = connection.prepareStatement("UPDATE cliente SET " + 
-	        		"nome = ?, telefone = ?, rg = ?, cpf = ?, rua = ?, numero = ?, " +
-	        		"complemento = ?, cep = ?, bairro = ?, cidade = ?, uf = ? " +
-	        		"WHERE cliente_id = ?");
-	        
-	        ps.setString(1, cliente.getNome());
-	        ps.setString(2, cliente.getTelefone());
-	        ps.setString(3, cliente.getRg());
-	        ps.setString(4, cliente.getCpf());
-	        ps.setString(5, cliente.getRua());
-	        ps.setInt(6, cliente.getNumero());
-	        ps.setString(7, cliente.getComplemento());
-	        ps.setString(8, cliente.getCep());
-	        ps.setString(9, cliente.getBairro());
-	        ps.setString(10, cliente.getCidade());
-	        ps.setString(11, cliente.getUf());
-	        
-	        ps.setLong(12, cliente.getCliente_id());
-	        
-	        ps.executeUpdate();
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
+	public void atualizar(Cliente cliente){
+		try {
+			Connection connection = ConnectionFactory.getConnection();
+		    PreparedStatement ps = connection.prepareStatement("UPDATE cliente SET " + 
+		    		"nome = ?, telefone = ?, rg = ?, cpf = ?, rua = ?, numero = ?, " +
+		    		"complemento = ?, cep = ?, bairro = ?, cidade = ?, uf = ? " +
+		    		"WHERE cliente_id = ?");
+		       
+		    ps.setString(1, cliente.getNome());
+		    ps.setString(2, cliente.getTelefone());
+		    ps.setString(3, cliente.getRg());
+		    ps.setString(4, cliente.getCpf());
+		    ps.setString(5, cliente.getRua());
+		    ps.setInt(6, cliente.getNumero());
+		    ps.setString(7, cliente.getComplemento());
+		    ps.setString(8, cliente.getCep());
+		    ps.setString(9, cliente.getBairro());
+		    ps.setString(10, cliente.getCidade());
+		    ps.setString(11, cliente.getUf());
+		       
+		    ps.setLong(12, cliente.getCliente_id());
+		       
+		    ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

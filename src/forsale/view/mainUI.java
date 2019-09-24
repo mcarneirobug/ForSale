@@ -1,6 +1,5 @@
 package forsale.view;
 
-import java.awt.Component;
 import javax.swing.JInternalFrame;
 
 /*
@@ -101,7 +100,12 @@ public class mainUI extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         DadosClienteUI telaDadosCliente = new DadosClienteUI();
         
-        mainPanel.removeAll();
+        for(Object c : mainPanel.getComponents()) {
+        	if(c instanceof JInternalFrame) {
+        		((JInternalFrame) c).dispose();
+        	}
+        }
+        
         mainPanel.add(telaDadosCliente);
         telaDadosCliente.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -109,7 +113,12 @@ public class mainUI extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         PesquisaClienteUI telaPesquisaCliente = new PesquisaClienteUI();
         
-        mainPanel.removeAll();
+        for(Object c : mainPanel.getComponents()) {
+        	if(c instanceof JInternalFrame) {
+        		((JInternalFrame) c).dispose();
+        	}
+        }
+
         mainPanel.add(telaPesquisaCliente);
         telaPesquisaCliente.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
